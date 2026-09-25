@@ -2,8 +2,10 @@
   "name": "yandex_praktikum",
   "version": "0.0.1",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "tsx index.ts"
   },
   "author": "Hovik Gasparyan",
   "license": "ISC",
@@ -11,6 +13,7 @@
   "devDependencies": {
     "@types/node": "^26.6.2",
     "ts-node": "^10.9.2",
+    "tsx": "^4.23.15",
     "typescript": "^5.9.3"
   }
 }
