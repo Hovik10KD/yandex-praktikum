@@ -1,11 +1,11 @@
 {
   "name": "yandex_praktikum",
   "version": "0.0.1",
-  "main": "index.js",
+  "main": "app.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "tsx index.ts"
+    "dev": "tsx app.ts"
   },
   "author": "Hovik Gasparyan",
   "license": "ISC",

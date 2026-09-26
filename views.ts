@@ -1,8 +1,6 @@
-import http, { IncomingMessage, ServerResponse } from "http";
+const { BASE_PATH = "" } = process.env;
 
-const { PORT = 3000, BASE_PATH } = process.env;
-
-const mainPageMarkup = `
+export const mainPageMarkup = `
   <!DOCTYPE html>
   <html>
   <head>
@@ -74,7 +72,7 @@ const mainPageMarkup = `
   </html>
 `;
 
-const submitSuccessMarkup = `
+export const submitSuccessMarkup = `
   <!DOCTYPE html>
   <html>
   <head>
@@ -104,42 +102,8 @@ const submitSuccessMarkup = `
   <body>
     <div class="container">
       <h1>Форма успешно отправлена</h1>
-      <a href="${BASE_PATH}">Вернуться назад</a>
+      <a href="${BASE_PATH}/">Вернуться назад</a>
     </div>
   </body>
   </html>
 `;
-
-const todos: string[] = [];
-
-const server = http.createServer(
-  (req: IncomingMessage, res: ServerResponse) => {
-    if (req.url === "/submit" && req.method === "POST") {
-      let body = "";
-
-      req.on("data", (chunk: Buffer) => {
-        body += chunk.toString();
-      });
-
-      req.on("end", () => {
-        todos.push(body.split("=")[1]);
-
-        res.writeHead(200, {
-          "Content-Type": "text/html",
-        });
-
-        res.end(submitSuccessMarkup);
-      });
-    }
-
-    if (req.url === "/" && req.method === "GET") {
-      res.writeHead(200, {
-        "Content-Type": "text/html",
-      });
-
-      res.end(mainPageMarkup);
-    }
-  },
-);
-
-server.listen(PORT);
